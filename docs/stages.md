@@ -2,7 +2,7 @@
 
 Kiwi compiler has the following stages:
  - CLI
- - Lexer
+ - Tokenizer
  - Parser
  - Resolver
  - Semantic validator
