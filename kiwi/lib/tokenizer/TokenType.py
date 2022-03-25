@@ -15,3 +15,4 @@ class TokenType:
     IDENTIFIER = "IDENTIFIER"
     KEYWORD = "KEYWORD"
     INT_LITERAL = "INT_LITERAL"
+    EOF = "EOF"

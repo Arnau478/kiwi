@@ -113,4 +113,6 @@ class Tokenizer:
             else:
                 raise IllegalCharacter(self.current_char, self.line, self.code, description="Fired when an unexpected character was found while tokenizing your code")
         
+        tokens.append(Token(TokenType.EOF, start=self.idx-1, end=self.idx))
+        
         return tokens
