@@ -58,6 +58,9 @@ class Tokenizer:
             return True
         return False
 
+    def get_line(self, idx: int):
+        return self.code[:idx:].count("\n") + 1
+
     def tokenize(self) -> list:
         """Start tokenization process on Tokenizer object
 
@@ -70,31 +73,31 @@ class Tokenizer:
             if self.is_ignorable(self.current_char):
                 self.advance()
             elif self.match("+"):
-                tokens.append(Token(TokenType.PLUS, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.PLUS, line=self.get_line(self.idx-1)))
             elif self.match("-"):
-                tokens.append(Token(TokenType.MINUS, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.MINUS, line=self.get_line(self.idx-1)))
             elif self.match("*"):
-                tokens.append(Token(TokenType.MUL, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.MUL, line=self.get_line(self.idx-1)))
             elif self.match("/"):
-                tokens.append(Token(TokenType.DIV, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.DIV, line=self.get_line(self.idx-1)))
             elif self.match("<"):
-                tokens.append(Token(TokenType.LESS, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.LESS, line=self.get_line(self.idx-1)))
             elif self.match(">"):
-                tokens.append(Token(TokenType.GREATER, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.GREATER, line=self.get_line(self.idx-1)))
             elif self.match(":"):
-                tokens.append(Token(TokenType.COLON, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.COLON, line=self.get_line(self.idx-1)))
             elif self.match("("):
-                tokens.append(Token(TokenType.LPAREN, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.LPAREN, line=self.get_line(self.idx-1)))
             elif self.match(")"):
-                tokens.append(Token(TokenType.RPAREN, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.RPAREN, line=self.get_line(self.idx-1)))
             elif self.match("{"):
-                tokens.append(Token(TokenType.LBRACE, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.LBRACE, line=self.get_line(self.idx-1)))
             elif self.match("}"):
-                tokens.append(Token(TokenType.RBRACE, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.RBRACE, line=self.get_line(self.idx-1)))
             elif self.match("="):
-                tokens.append(Token(TokenType.EQ, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.EQ, line=self.get_line(self.idx-1)))
             elif self.match(";"):
-                tokens.append(Token(TokenType.SEMI, start=self.idx-1, end=self.idx))
+                tokens.append(Token(TokenType.SEMI, line=self.get_line(self.idx-1)))
             elif self.match(string.digits, advance=False):
                 s = ""
                 start = self.idx
@@ -113,6 +116,6 @@ class Tokenizer:
             else:
                 raise IllegalCharacter(self.current_char, self.line, self.code, description="Fired when an unexpected character was found while tokenizing your code")
         
-        tokens.append(Token(TokenType.EOF, start=self.idx-1, end=self.idx))
+        tokens.append(Token(TokenType.EOF, line=self.get_line(self.idx-1)))
         
         return tokens

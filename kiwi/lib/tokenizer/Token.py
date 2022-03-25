@@ -2,7 +2,7 @@ from ast import Str
 from lib.tokenizer.TokenType import TokenType
 
 class Token:
-    def __init__(self, type: TokenType, value: any = None, start: int = None, end: int = None) -> None:
+    def __init__(self, type: TokenType, value: any = None, line: int = None) -> None:
         """Token class
 
         Args:
@@ -13,8 +13,7 @@ class Token:
         """
         self.type = type
         self.value = value
-        self.start = start
-        self.end = end
+        self.line = line
     
     def __repr__(self) -> Str:
         if(self.value): return f"<{self.type}({self.value})>"
