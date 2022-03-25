@@ -18,3 +18,7 @@ class Token:
     def __repr__(self) -> Str:
         if(self.value): return f"<{self.type}({self.value})>"
         return f"<{self.type}>"
+
+    def get_repr(self):
+        if(self.type.repr): return self.type.repr
+        return self.value

@@ -1,6 +1,6 @@
 import string
 from lib.tokenizer.Token import Token
-from lib.tokenizer.TokenType import TokenType
+from lib.tokenizer import TokenType
 from lib.error.IllegalCharacter import IllegalCharacter
 
 keywords = [

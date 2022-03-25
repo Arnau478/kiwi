@@ -11,6 +11,7 @@
 # Kiwi programming language compiler #
 
 import argparse
+from lib import parser
 from lib import tokenizer
 from lib.error.KiwiError import KiwiError
 
@@ -25,7 +26,10 @@ def compile(code) -> None:
     
     # Tokenize
     tokens = tokenizer.tokenize(code)
-    print(tokens)
+    
+    # Parse
+    ast = parser.parse(tokens, code)
+    print(ast)
 
 if(__name__ == "__main__"):
     try:

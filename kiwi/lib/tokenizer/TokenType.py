@@ -1,18 +1,25 @@
 class TokenType:
-    PLUS = "PLUS"
-    MINUS = "MINUS"
-    MUL = "MUL"
-    DIV = "DIV"
-    LESS = "LESS"
-    GREATER = "GREATER"
-    COLON = "COLON"
-    LPAREN = "LPAREN"
-    RPAREN = "RPAREN"
-    LBRACE = "LBRACE"
-    RBRACE = "RBRACE"
-    EQ = "EQ"
-    SEMI = "SEMI"
-    IDENTIFIER = "IDENTIFIER"
-    KEYWORD = "KEYWORD"
-    INT_LITERAL = "INT_LITERAL"
-    EOF = "EOF"
+    def __init__(self, id, repr=None):
+        self.id = id
+        self.repr = repr
+    
+    def __repr__(self):
+        return self.id
+
+PLUS = TokenType("PLUS", "+")
+MINUS = TokenType("MINUS", "-")
+MUL = TokenType("MUL", "*")
+DIV = TokenType("DIV", "/")
+LESS = TokenType("LESS", "<")
+GREATER = TokenType("GREATER", ">")
+COLON = TokenType("COLON", ":")
+LPAREN = TokenType("LPAREN", "(")
+RPAREN = TokenType("RPAREN", ")")
+LBRACE = TokenType("LBRACE", "{")
+RBRACE = TokenType("RBRACE", "}")
+EQ = TokenType("EQ", "=")
+SEMI = TokenType("SEMI", ";")
+IDENTIFIER = TokenType("IDENTIFIER")
+KEYWORD = TokenType("KEYWORD")
+INT_LITERAL = TokenType("INT_LITERAL")
+EOF = TokenType("EOF", "EOF")
