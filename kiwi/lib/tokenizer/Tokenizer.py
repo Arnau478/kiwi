@@ -104,7 +104,7 @@ class Tokenizer:
                 while self.current_char in string.digits:
                     s += self.current_char
                     self.advance()
-                tokens.append(Token(TokenType.INT_LITERAL, value=int(s), start=start, end=self.idx))
+                tokens.append(Token(TokenType.INT_LITERAL, value=int(s), line=self.get_line(start)))
             elif self.match(string.ascii_letters, advance=False):
                 s = "" # Identifier's name
                 start = self.idx # Save start position
@@ -112,9 +112,9 @@ class Tokenizer:
                     s += self.current_char
                     self.advance()
                 
-                tokens.append(Token(TokenType.KEYWORD if s in keywords else TokenType.IDENTIFIER, value=s, start=start, end=self.idx))
+                tokens.append(Token(TokenType.KEYWORD if s in keywords else TokenType.IDENTIFIER, value=s, line=self.get_line(start)))
             else:
-                raise IllegalCharacter(self.current_char, self.line, self.code, description="Fired when an unexpected character was found while tokenizing your code")
+                raise IllegalCharacter(self.current_char, self.line, self.code)
         
         tokens.append(Token(TokenType.EOF, line=self.get_line(self.idx-1)))
         
