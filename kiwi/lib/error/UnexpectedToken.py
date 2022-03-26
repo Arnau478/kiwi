@@ -1,11 +1,12 @@
 from lib.error.KiwiError import KiwiError
 
 class UnexpectedToken(KiwiError):
-    def __init__(self, token, code):
+    def __init__(self, token, code, expected):
         self.token = token
         self.line = token.line
         self.code = code
-        super().__init__(f"Unexpected token '{self.token.get_repr()}'", description="Fired when the parser encounters a token that didn't make sense on that specific location")
+        self.expected = expected
+        super().__init__(f"Expecting {self.expected}, instead got '{self.token.get_repr()}'", description="Fired when the parser encounters a token that didn't make sense on that specific location")
 
     def get_throw_extra(self):
         ret = ""

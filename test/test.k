@@ -1,4 +1,4 @@
-const LAST = 30;
+const LAST:int = 30;
 fun fib(n:int):int {
     if(n > 1){
         return fib(n-1) + fib(n-2);
