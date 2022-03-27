@@ -16,6 +16,10 @@ class Generator:
                     self.asm_code += f"\t\tleave\n"
                 elif line.inst == "JMP":
                     self.asm_code += f"\t\tjmp {line.args[0]}\n"
+                elif line.inst == "EXIT":
+                    self.asm_code += f"\t\tmov ebx, eax\n"
+                    self.asm_code += f"\t\tmov eax, 0x1\n"
+                    self.asm_code += f"\t\tint 0x80\n"
                 else:
                     raise Exception("Unimplemented ASM generation for KMC instruction " + line.__dict__.__str__())
             elif isinstance(line, Kmc.Label):
