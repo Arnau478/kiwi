@@ -11,9 +11,11 @@ class Generator:
                 if line.inst == "RET":
                     self.asm_code += f"\t\tret\n"
                 elif line.inst == "ENTER":
-                    self.asm_code += f"\t\tenter\n"
+                    self.asm_code += f"\t\tenter 0, 0\n"
                 elif line.inst == "LEAVE":
                     self.asm_code += f"\t\tleave\n"
+                elif line.inst == "JMP":
+                    self.asm_code += f"\t\tjmp {line.args[0]}\n"
                 else:
                     raise Exception("Unimplemented ASM generation for KMC instruction " + line.__dict__.__str__())
             elif isinstance(line, Kmc.Label):
