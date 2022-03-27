@@ -1,9 +1,6 @@
-# Import all submodules, so they are on the namespace
+from lib.kmc.generator.Generator import Generator
 
-import pkgutil
-
-__all__ = []
-for loader, module_name, is_pkg in pkgutil.walk_packages(__path__):
-    __all__.append(module_name)
-    _module = loader.find_module(module_name).load_module(module_name)
-    globals()[module_name] = _module
+def generate(ast, code):
+    generator = Generator(ast, code)
+    kmc_code = generator.generate()
+    return kmc_code
