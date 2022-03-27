@@ -20,6 +20,8 @@ class Generator:
                     raise Exception("Unimplemented ASM generation for KMC instruction " + line.__dict__.__str__())
             elif isinstance(line, Kmc.Label):
                 self.asm_code += f"\t{line.name}:\n"
+            elif isinstance(line, Kmc.Tag):
+                self.asm_code += f"{line.tag}:\n"
             else:
                 raise Exception("Unimplemented case for line class " + str(line.__class__))
         

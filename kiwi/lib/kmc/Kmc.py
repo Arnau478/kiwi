@@ -30,4 +30,11 @@ class Label:
     
     def to_str(self):
         return f"\t{self.name}:"
+    
+class Tag:
+    def __init__(self, tag):
+        self.tag = tag
+    
+    def to_str(self):
+        return f"{self.tag}"
         
