@@ -37,7 +37,10 @@ def compile(code) -> None:
     
     # Generate asm code
     asm_code = asm.generate(kmc_code)
-    print(asm_code)
+    
+    # Assemble asm code
+    binout = asm.assemble(asm_code)
+    print(binout)
 
 if(__name__ == "__main__"):
     try:
