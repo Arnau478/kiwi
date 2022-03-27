@@ -21,7 +21,7 @@ class Generator:
             elif isinstance(line, Kmc.Label):
                 self.asm_code += f"\t{line.name}:\n"
             elif isinstance(line, Kmc.Tag):
-                self.asm_code += f"{line.tag}:\n"
+                self.asm_code += f"{line.tag}\n"
             else:
                 raise Exception("Unimplemented case for line class " + str(line.__class__))
         
