@@ -13,6 +13,7 @@
 import argparse
 from lib import parser
 from lib import tokenizer
+from lib import kmc
 from lib.error.KiwiError import KiwiError
 
 __version__ = "dev"
@@ -29,7 +30,10 @@ def compile(code) -> None:
     
     # Parse
     ast = parser.parse(tokens, code)
-    print(ast)
+
+    # Generate kmc code
+    kmc_code = kmc.generator.generate(ast, code)
+    print(kmc_code)
 
 if(__name__ == "__main__"):
     try:
