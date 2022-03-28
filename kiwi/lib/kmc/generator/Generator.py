@@ -21,7 +21,7 @@ class Generator:
     def visit_Program(self, node: SyntaxNode.Program):
         self.write(Kmc.Tag("global _start"))
         self.write(Kmc.Label("_start"))
-        self.write(Kmc.Instruction("JMP", ["_f_main"]))
+        self.write(Kmc.Instruction("CALL", ["_f_main"]))
         self.write(Kmc.Instruction("EXIT", []))
         for glob in node.globals:
             self.visit(glob)

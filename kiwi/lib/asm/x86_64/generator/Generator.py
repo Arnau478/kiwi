@@ -16,6 +16,8 @@ class Generator:
                     self.asm_code += f"\t\tleave\n"
                 elif line.inst == "JMP":
                     self.asm_code += f"\t\tjmp {line.args[0]}\n"
+                elif line.inst == "CALL":
+                    self.asm_code += f"\t\tcall {line.args[0]}\n"
                 elif line.inst == "EXIT":
                     self.asm_code += f"\t\tmov ebx, eax\n"
                     self.asm_code += f"\t\tmov eax, 0x1\n"
